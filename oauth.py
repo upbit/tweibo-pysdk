@@ -1,4 +1,7 @@
+##
 ## OAuth2 demo class
+##
+#  Wiki: https://github.com/upbit/tweibo-pysdk/wiki/OAuth2Handler
 #
 # [example]
 #   oauth = OAuth2Handler()
