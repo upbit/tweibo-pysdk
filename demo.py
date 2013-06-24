@@ -62,4 +62,5 @@ def tweibo_test():
     print ">> time=%s, http://t.qq.com/p/t/%s" % (tweet_pic1.data.time, tweet_pic1.data.id)
 
 if __name__ == '__main__':
+    #access_token_test()
     tweibo_test()

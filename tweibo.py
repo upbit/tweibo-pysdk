@@ -107,7 +107,11 @@ def _http_call(api, url, method, **kw):
     conn = httplib.HTTPConnection(api.host, api.port, timeout=api.timeout)
 
     # copy request header from api.headers
-    req_headers = { k:v for k,v in api.headers.iteritems() }
+    #req_headers = { k:v for k,v in api.headers.iteritems() }
+    # Fix python 2.6 'SyntaxError: invalid syntax' BUG
+    req_headers = {}
+    for k,v in api.headers.iteritems():
+        req_headers[str(k)] = v
 
     # Request compression if configured
     if api.compression:
