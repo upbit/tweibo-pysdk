@@ -9,16 +9,14 @@ from tweibo import API
 APP_KEY = "801376349"
 APP_SECRET = "c057534d14cba920579f2d54005e0c06"
 CALLBACK_URL = "https://github.com"
-# 请先按照 access_token_test() 说明填写 ACCESS_TOKEN 和 OPENID
+# 请先按照 https://github.com/upbit/tweibo-pysdk/wiki/OAuth2Handler 的鉴权说明填写 ACCESS_TOKEN 和 OPENID
 ACCESS_TOKEN = ""
 OPENID = ""
 IMG_EXAMPLE = "example.png"
 
 def access_token_test():
     """ 访问get_access_token_url()的URL并授权后，会跳转callback页面，其中包含如下参数：
-        #access_token=00000000000ACCESSTOKEN0000000000&expires_in=8035200
-        &openid=0000000000000OPENID0000000000000&openkey=0000000000000OPENKEY000000000000
-        &refresh_token=0000000000REFRESHTOKEN00000000&state=
+        #access_token=00000000000ACCESSTOKEN0000000000&expires_in=8035200&openid=0000000000000OPENID0000000000000&openkey=0000000000000OPENKEY000000000000&refresh_token=0000000000REFRESHTOKEN00000000&state=
     保存下其中的 access_token, openid 并调用
         oauth.set_access_token(access_token)
         oauth.set_openid(openid)
