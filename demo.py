@@ -3,8 +3,8 @@
 
 import time
 
-from tweibo.tweibo import API
-from tweibo.oauth import OAuth2Handler
+#sys.path.insert(0, 'tweibo.zip')
+from tweibo import *
 
 # 换成你的 APPKEY
 APP_KEY = "801376349"
