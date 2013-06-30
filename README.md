@@ -24,6 +24,3 @@ demo.py演示: 上传example.png并发表微博
 ```
 
 ![demo.py运行效果](https://raw.github.com/wiki/upbit/tweibo-pysdk/images/demo.jpg)
-
-***
-**最新代码下载**：[https://github.com/upbit/tweibo-pysdk/archive/master.zip](tweibo-pysdk.zip)
