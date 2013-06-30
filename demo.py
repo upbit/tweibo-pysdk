@@ -2,8 +2,9 @@
 #! /usr/bin/env python
 
 import time
-from oauth import OAuth2Handler
-from tweibo import API
+
+from tweibo.tweibo import API
+from tweibo.oauth import OAuth2Handler
 
 # 换成你的 APPKEY
 APP_KEY = "801376349"
@@ -13,6 +14,11 @@ CALLBACK_URL = "https://github.com"
 ACCESS_TOKEN = ""
 OPENID = ""
 IMG_EXAMPLE = "example.png"
+
+# 返回text是unicode，设置默认编码为utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def access_token_test():
     """ 访问get_access_token_url()的URL并授权后，会跳转callback页面，其中包含如下参数：
