@@ -127,7 +127,7 @@ def _http_call(api, url, method, **kw):
         raise Exception('Failed to send request: %s' % e)
 
     if resp.status != 200:
-        raise Exception(resp.read())
+        raise Exception("[HTTP %s] %s" % (resp.status, resp.read()))
 
     # Parse the response payload
     body = resp.read()
