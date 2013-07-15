@@ -18,8 +18,19 @@ if _DEBUG:
     reload(sys) 
     sys.setdefaultencoding('utf8')
 
+class TWeiboError(Exception):
+    """TWeibo API exception"""
+
+    def __init__(self, reason, result=None):
+        self.reason = unicode(reason)
+        self.result = result
+        Exception.__init__(self, reason)
+
+    def __str__(self):
+        return self.reason
+
 class JsonDict(dict):
-    ' general json object that allows attributes to be bound to and also behaves like a dict '
+    """general json object that allows attributes to be bound to and also behaves like a dict"""
 
     def __getattr__(self, attr):
         try:
@@ -31,10 +42,10 @@ class JsonDict(dict):
         self[attr] = value
 
 def _parse_json(s):
-    ' parse str into JsonDict '
+    """parse str into JsonDict"""
 
     def _obj_hook(pairs):
-        ' convert json object to python object '
+        """convert json object to python object"""
         o = JsonDict()
         for k, v in pairs.iteritems():
             o[str(k)] = v
@@ -124,10 +135,10 @@ def _http_call(api, url, method, **kw):
         conn.request(method, http_url, headers=req_headers, body=http_body)
         resp = conn.getresponse()
     except Exception, e:
-        raise Exception('Failed to send request: %s' % e)
+        raise TWeiboError('Failed to send request: %s' % (e))
 
     if resp.status != 200:
-        raise Exception("[HTTP %s] %s" % (resp.status, resp.read()))
+        raise TWeiboError("[HTTP %s] %s" % (resp.status, resp.read()))
 
     # Parse the response payload
     body = resp.read()
@@ -136,7 +147,7 @@ def _http_call(api, url, method, **kw):
             zipper = gzip.GzipFile(fileobj=StringIO.StringIO(body))
             body = zipper.read()
         except Exception, e:
-            raise Exception('Failed to decompress data: %s' % e)
+            raise TWeiboError('Failed to decompress data: %s' % e)
 
     if _DEBUG:
         print "(%s) [DEBUG] %s" % (time.time(), body)
@@ -146,13 +157,10 @@ def _http_call(api, url, method, **kw):
     # check errcode
     if hasattr(result, 'errcode'):
         if int(result.errcode) != 0:
-            raise Exception("[ERROR] errcode=%s, ret=%s, msg:%s\n\n%s" % (result.errcode, result.ret, result.msg, body))
+            raise TWeiboError("[ERROR] errcode=%s, ret=%s, msg:%s\n\n%s" % (result.errcode, result.ret, result.msg, body), result=result)
 
     if _DEBUG:
-        try:
-            print "(%s) [DEBUG] errcode=%s, ret=%s, msg:%s" % (time.time(), result.errcode, result.ret, result.msg)
-        except Exception, e:
-            raise e
+        print "(%s) [DEBUG] errcode=%s, ret=%s, msg:%s" % (time.time(), result.errcode, result.ret, result.msg)
 
     conn.close()
     return result
@@ -170,7 +178,7 @@ class HttpObject(object):
         return wrap
 
 class API(object):
-    """ Tencent Weibo API """
+    """Tencent Weibo API for Python"""
     def __init__(self, auth, host="open.t.qq.com", port=80, compression=True, timeout=60, headers=None):
         self.auth = auth
         self.host = host
