@@ -21,8 +21,9 @@ if _DEBUG:
 class TWeiboError(Exception):
     """TWeibo API exception"""
 
-    def __init__(self, reason, result=None):
+    def __init__(self, reason, body=None, result=None):
         self.reason = unicode(reason)
+        self.body = body
         self.result = result
         Exception.__init__(self, reason)
 
@@ -152,12 +153,16 @@ def _http_call(api, url, method, **kw):
     if _DEBUG:
         print "(%s) [DEBUG] %s" % (time.time(), body)
 
-    result = _parse_json(body)
+    # raise TWeiboError(body) when API return None
+    try:
+        result = _parse_json(body)
+    except Exception, e:
+        raise TWeiboError("parse_json() error: %s" % (e), body=body)
 
     # check errcode
     if hasattr(result, 'errcode'):
         if int(result.errcode) != 0:
-            raise TWeiboError("[ERROR] errcode=%s, ret=%s, msg:%s\n\n%s" % (result.errcode, result.ret, result.msg, body), result=result)
+            raise TWeiboError("[ERROR] errcode=%s, ret=%s, msg:%s\n\n%s" % (result.errcode, result.ret, result.msg, body), body=body, result=result)
 
     if _DEBUG:
         print "(%s) [DEBUG] errcode=%s, ret=%s, msg:%s" % (time.time(), result.errcode, result.ret, result.msg)
