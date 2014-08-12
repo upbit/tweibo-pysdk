@@ -1,15 +1,15 @@
-# ÌÚÑ¶Î¢²©SDK for Python
+# è…¾è®¯å¾®åšSDK for Python
 
-²Î¿¼ @michaelliao µÄ [sinaweibopy](https://github.com/michaelliao/sinaweibopy) Ğ´ÁË¸öÌÚÑ¶µÄAPI¡£²ÉÓÃÏàÍ¬µÄ¶¯Ì¬ [_http_call()](https://github.com/upbit/tweibo-pysdk/blob/master/tweibo.py#L90) µ÷ÓÃ·½Ê½£¬¾ßÓĞ´úÂëÁ¿ÉÙÒ×ÓÚÎ¬»¤µÈÌØµã¡£
+å‚è€ƒ @michaelliao çš„ [sinaweibopy](https://github.com/michaelliao/sinaweibopy) å†™äº†ä¸ªè…¾è®¯çš„APIã€‚é‡‡ç”¨ç›¸åŒçš„åŠ¨æ€ [_http_call()](https://github.com/upbit/tweibo-pysdk/blob/master/tweibo/tweibo.py#L102) è°ƒç”¨æ–¹å¼ï¼Œå…·æœ‰ä»£ç é‡å°‘æ˜“äºç»´æŠ¤ç­‰ç‰¹ç‚¹ã€‚
 
-APIµÄÏêÏ¸Ê¹ÓÃ·½·¨¼û[demo.py](https://github.com/upbit/tweibo-pysdk/blob/master/demo.py)£¬ÒÑ²âÊÔ°æ±¾£ºPython 2.7
+APIçš„è¯¦ç»†ä½¿ç”¨æ–¹æ³•è§[demo.py](https://github.com/upbit/tweibo-pysdk/blob/master/demo.py)ï¼Œå·²æµ‹è¯•ç‰ˆæœ¬ï¼šPython 2.7
 
 ## FAQ
-1. [OAuth2Handler(): OAuth2¼øÈ¨ËµÃ÷](https://github.com/upbit/tweibo-pysdk/wiki/OAuth2Handler)
-2. [demo.pyÏê½â](https://github.com/upbit/tweibo-pysdk/wiki/demo.py%E8%AF%A6%E8%A7%A3)
+1. [OAuth2Handler(): OAuth2é‰´æƒè¯´æ˜](https://github.com/upbit/tweibo-pysdk/wiki/OAuth2Handler)
+2. [demo.pyè¯¦è§£](https://github.com/upbit/tweibo-pysdk/wiki/demo.py%E8%AF%A6%E8%A7%A3)
 
 ***
-demo.pyÑİÊ¾: ÉÏ´«example.png²¢·¢±íÎ¢²©
+demo.pyæ¼”ç¤º: ä¸Šä¼ example.pngå¹¶å‘è¡¨å¾®åš
 
 ```python
     # UPLOAD /t/upload_pic
@@ -23,4 +23,4 @@ demo.pyÑİÊ¾: ÉÏ´«example.png²¢·¢±íÎ¢²©
     print ">> time=%s, http://t.qq.com/p/t/%s" % (tweet_pic1.data.time, tweet_pic1.data.id)
 ```
 
-![demo.pyÔËĞĞĞ§¹û](https://raw.github.com/wiki/upbit/tweibo-pysdk/images/demo.jpg)
+![demo.pyè¿è¡Œæ•ˆæœ](https://raw.github.com/wiki/upbit/tweibo-pysdk/images/demo.jpg)
